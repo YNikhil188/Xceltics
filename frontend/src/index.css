@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #faf3eb; /* Linen / Soft Cream */
+  --primary: #f97316; /* Burnt Orange */
+  --primary-dark: #9a3412; /* Dark Rust / Deep Red-Orange */
+  --accent: #fbbf24; /* Amber / Vivid Orange */
+  --light: #fcd9a9; /* Light Amber / Peach Orange */
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-orange-950 via-red-950 to-orange-950 min-h-screen text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .glass-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 shadow-2xl;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-orange-500 to-red-600 rounded-lg font-semibold 
+    hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl
+    transform hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg font-semibold
+    hover:bg-white/20 transition-all duration-300 shadow-lg hover:shadow-xl;
+  }
+
+  .input-glass {
+    @apply w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg
+    focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent
+    placeholder-white/50 text-white transition-all duration-300;
+  }
+
+  .input-glass option {
+    @apply bg-orange-950 text-white;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg
+    focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent
+    placeholder-white/50 text-white transition-all duration-300;
+  }
+
+  .card-glass {
+    @apply glass rounded-2xl p-6 hover:bg-white/[0.15] transition-all duration-300
+    hover:scale-[1.02] hover:shadow-2xl;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Loading animation */
+.loading-spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
