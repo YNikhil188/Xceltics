@@ -325,7 +325,7 @@ npm run build
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📄 License
+## 📄 LICENSE
 
 MIT License - feel free to use this project for personal or commercial purposes.
 
