@@ -1,4 +1,4 @@
-# 📊 Excel Analytics Platform - Production-Grade MERN Stack
+# 📊 Xceltics Platform - MERN Stack
 
 A full-stack Excel Analytics Platform built with MongoDB, Express.js, React.js, and Node.js featuring AI-powered insights, dynamic visualizations, and glassmorphic UI design.
 
@@ -26,7 +26,7 @@ A full-stack Excel Analytics Platform built with MongoDB, Express.js, React.js, 
 ## 🏗️ Project Structure
 
 ```
-excel-analytics-platform/
+Xceltics/
 ├── backend/                 # Node.js + Express API
 │   ├── config/             # Database configuration
 │   ├── controllers/        # Route controllers
@@ -354,4 +354,5 @@ Built with ❤️ using the MERN stack
 
 ---
 
-**Happy Analytics! 📊**
+**📊Xceltics**
+**Smarter Data Smarter Decisions**
