@@ -66,7 +66,7 @@ export const generateInsights = async (req, res) => {
     } else {
       // Call OpenAI API
       const completion = await openai.chat.completions.create({
-        model: 'gpt-4',
+        model: 'gpt-4o-mini',
         messages: [
           {
             role: 'system',
@@ -105,7 +105,7 @@ export const generateInsights = async (req, res) => {
       keyFindings: parsedResponse.keyFindings || [],
       trends: parsedResponse.trends || [],
       recommendations: parsedResponse.recommendations || [],
-      aiModel: 'gpt-4'
+      aiModel: 'gpt-4o-mini'
     });
 
     // Update file with insight reference
