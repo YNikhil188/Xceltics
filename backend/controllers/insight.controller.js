@@ -64,36 +64,42 @@ export const generateInsights = async (req, res) => {
       // Generate mock insights for testing
       parsedResponse = generateMockInsights(dataSummary);
     } else {
-      // Call OpenAI API
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'system',
-            content: 'You are a data analyst expert. Analyze the provided dataset and provide actionable insights, trends, and recommendations in JSON format.'
-          },
-          {
-            role: 'user',
-            content: `Analyze this dataset and provide insights:\n\n${JSON.stringify(dataSummary, null, 2)}\n\nProvide response in JSON format with keys: summary (string), keyFindings (array of {title, value, description}), trends (array of strings), recommendations (array of strings)`
-          }
-        ],
-        temperature: 0.7,
-        max_tokens: 1500
-      });
-
-      const aiResponse = completion.choices[0].message.content;
-
       try {
-        // Try to parse JSON response
-        parsedResponse = JSON.parse(aiResponse);
-      } catch (e) {
-        // If not valid JSON, create structured response
-        parsedResponse = {
-          summary: aiResponse,
-          keyFindings: [],
-          trends: [],
-          recommendations: []
-        };
+        // Call OpenAI API
+        const completion = await openai.chat.completions.create({
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a data analyst expert. Analyze the provided dataset and provide actionable insights, trends, and recommendations in JSON format.'
+            },
+            {
+              role: 'user',
+              content: `Analyze this dataset and provide insights:\n\n${JSON.stringify(dataSummary, null, 2)}\n\nProvide response in JSON format with keys: summary (string), keyFindings (array of {title, value, description}), trends (array of strings), recommendations (array of strings)`
+            }
+          ],
+          temperature: 0.7,
+          max_tokens: 1500
+        });
+
+        const aiResponse = completion.choices[0].message.content;
+
+        try {
+          // Try to parse JSON response
+          parsedResponse = JSON.parse(aiResponse);
+        } catch (e) {
+          // If not valid JSON, create structured response
+          parsedResponse = {
+            summary: aiResponse,
+            keyFindings: [],
+            trends: [],
+            recommendations: []
+          };
+        }
+      } catch (openaiError) {
+        // Fallback to mock insights if OpenAI fails (quota exceeded, API error, etc.)
+        console.log('⚠️  OpenAI API error, using mock insights:', openaiError.message);
+        parsedResponse = generateMockInsights(dataSummary);
       }
     }
 
